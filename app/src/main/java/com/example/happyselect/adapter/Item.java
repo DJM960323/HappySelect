@@ -1,6 +1,8 @@
 package com.example.happyselect.adapter;
 
-import com.example.happyselect.R;
+
+import org.litepal.crud.LitePalSupport;
+import org.litepal.exceptions.DataSupportException;
 
 /**
  * Created on 2019-11-22.
@@ -8,25 +10,21 @@ import com.example.happyselect.R;
  * @author DengJianMing
  * @describe
  */
-public class Item {
+public class Item extends LitePalSupport {
 
     private String itemText;
-    private int imageButtonId;
 
 
-    public Item(String itemText){
-        this.itemText = itemText;
-        imageButtonId = R.id.delete_item_btn;
-    }
 
     public String getItemText() {
         return itemText;
     }
 
-
-    public int getImageButtonId() {
-        return imageButtonId;
+    public void setItemText(String itemText) {
+        this.itemText = itemText;
     }
+
+
 
 
 }
