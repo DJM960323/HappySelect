@@ -2,6 +2,9 @@ package com.example.happyselect.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -45,40 +48,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         ButterKnife.bind(this);
         //actionBar
         setSupportActionBar(toolbar);
 
+        //创建数据库
         Connector.getDatabase();
-        List<Item> lists = LitePal.findAll(Item.class);
-
-        for (int i = 0; i < lists.size(); i++) {
-            itemList.add(lists.get(i).getItemText());
-        }
-
-
+        //启动的时候获取itemList数据
+        getList();
+        Log.e("Tag","MainActivity.onCreate");
 
     }
 
-//    public ArrayList<String> getItemList() {
-//        ArrayList<String> items = new ArrayList<>();
-//        SharedPreferences preferences = getSharedPreferences("ItemList", MODE_PRIVATE);
-//
-//        for (int i = 0; i < preferences.getInt("itemLength", 0); i++) {
-//            String item = preferences.getString("" + i, "");
-//            Log.e("list",preferences.getString("" + i,"") + "已经获取到");
-//            items.add(item);
-//        }
-//        return items;
-//    }
-
-
+    //加载toolbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar, menu);
         return true;
     }
 
+    //toolbar上面的按钮的点击事件
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -99,40 +89,71 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    //处理开始按钮的点击事件
     @OnClick(R.id.select_button)
     public void onViewClicked() {
-        if (!isStart){
-            isStart = true;
-            selectButton.setText("结   束");
-            select(isStart);
-        }else{
+        if (isStart) {
             isStart = false;
+            select();
             selectButton.setText("开   始");
-            select(isStart);
+        } else {
+            isStart = true;
+            select();
+            selectButton.setText("结   束");
         }
     }
 
-    public void select(boolean isStart)  {
-        if (isStart){
-            while (true){
-                try {
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    int index = (int)(Math.random() * itemList.size());
-                                    itemText.setText(itemList.get(index));
-                                }
-                            });
-                        }
-                    }).sleep(200);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+    //这个方法可以实现文本每隔两秒就改变一次,
+    public void select() {
+        final Handler handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                itemText.setText(itemList.get(msg.arg1));
+                super.handleMessage(msg);
+            }
+        };
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (isStart) {
+                    Message msg = new Message();
+                    //随机生成下标
+                    int index = (int) (Math.random() * itemList.size());
+                    msg.arg1 = index;
+                    //发送给主线程
+                    handler.sendMessage(msg);
+                    try {
+                        //线程睡眠45ms，每隔45ms文本修改一次
+                        Thread.sleep(45);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
+        }).start();
+    }
 
+    //获取list数据
+    public void getList(){
+        List<Item> lists = LitePal.findAll(Item.class);
+        for (int i = 0; i < lists.size(); i++) {
+            itemList.add(lists.get(i).getItemText());
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //跳转页面的时候就清空itemList,以免数据错乱
+        itemList.clear();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        //跳回当前页面的时候就加载ItemList,因为可能有数据更新
+        getList();
+        Log.e("Tag", "MainActivity.onRestart: ");
     }
 }
