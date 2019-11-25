@@ -72,13 +72,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.backup:
+//            case R.id.backup:
+//                Toast.makeText(this, "新功能，敬请期待☺", Toast.LENGTH_SHORT).show();
+//                break;
+            case R.id.about:
                 Toast.makeText(this, "新功能，敬请期待☺", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.delete:
-                Toast.makeText(this, "新功能，敬请期待☺", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.settings:
+            case R.id.add:
                 Intent intent = new Intent(MainActivity.this, AddItemActivity.class);
                 startActivity(intent);
                 break;
