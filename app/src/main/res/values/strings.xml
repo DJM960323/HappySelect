@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">HappySelect</string>
+
+    <string name="about_us">\t\t这是一款帮助您做选择的APP，是本人在空闲的时候写的一个demo，用于对过去学到的知识做个总结，当然独木不成林，在开发过程中朋友们给了我很多宝贵的建议，在这里特别感谢老友程言、张勇、谢璐，没有他们的建议APP是做不成今天这个样子，当然毕竟本人能力有限，APP可能会有很多意想不到的bug，希望朋友们在遇到问题时先不要急躁，
+        及时反馈给我，我一定竭尽所能第一时间解决问题。下面是我的联系方式\n\n\n
+        </string>
+    <string name="call_me">微信号：DJM960323\nQ Q：923231006\n邓建明</string>
 </resources>

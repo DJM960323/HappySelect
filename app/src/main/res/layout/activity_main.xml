@@ -33,7 +33,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="点击下方按钮开始"
+                android:padding="10dp"
+                android:background="@drawable/edit_text_normal"
+                android:text="点击右上角加号添加数据☺"
                 android:textColor="#FF0000"
                 android:textSize="24sp" />
         </RelativeLayout>

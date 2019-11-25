@@ -57,7 +57,10 @@ public class MainActivity extends AppCompatActivity {
         Connector.getDatabase();
         //启动的时候获取itemList数据
         getList();
-        Log.e("Tag","MainActivity.onCreate");
+        if(itemList.size() != 0){
+            itemText.setText("可以开始了哟☺");
+        }
+        Log.e("Tag", "MainActivity.onCreate");
 
     }
 
@@ -72,15 +75,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-//            case R.id.backup:
-//                Toast.makeText(this, "新功能，敬请期待☺", Toast.LENGTH_SHORT).show();
-//                break;
             case R.id.about:
-                Toast.makeText(this, "新功能，敬请期待☺", Toast.LENGTH_SHORT).show();
+                Intent intent1 = new Intent(MainActivity.this,AboutUsActivity.class);
+                //跳转页面的时候itemList会被清空，这时如果没有停掉的话就会空指针异常
+                isStart = false;
+                startActivity(intent1);
                 break;
             case R.id.add:
-                Intent intent = new Intent(MainActivity.this, AddItemActivity.class);
-                startActivity(intent);
+                Intent intent2 = new Intent(MainActivity.this, AddItemActivity.class);
+                startActivity(intent2);
                 break;
             default:
                 break;
@@ -92,14 +95,19 @@ public class MainActivity extends AppCompatActivity {
     //处理开始按钮的点击事件
     @OnClick(R.id.select_button)
     public void onViewClicked() {
-        if (isStart) {
-            isStart = false;
-            select();
-            selectButton.setText("开   始");
-        } else {
-            isStart = true;
-            select();
-            selectButton.setText("结   束");
+        if (itemList.size() != 0) {
+            if (isStart) {
+                isStart = false;
+                select();
+                selectButton.setText("开   始");
+            } else {
+                isStart = true;
+                select();
+                selectButton.setText("结   束");
+            }
+        }else{
+            Toast.makeText(getApplicationContext(), "您没添加数据，请添加数据再开始吧☺", Toast.LENGTH_SHORT).show();
+            itemText.setText("请先添加一些数据再开始吧☺");
         }
     }
 
@@ -135,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //获取list数据
-    public void getList(){
+    public void getList() {
         List<Item> lists = LitePal.findAll(Item.class);
         for (int i = 0; i < lists.size(); i++) {
             itemList.add(lists.get(i).getItemText());
@@ -153,7 +161,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         //跳回当前页面的时候就加载ItemList,因为可能有数据更新
+        selectButton.setText("开    始");
         getList();
+        if(itemList.size() == 0){
+            itemText.setText("暂时没有添加数据哟☺");
+        }else{
+            itemText.setText("可以开始了哟☺");
+        }
         Log.e("Tag", "MainActivity.onRestart: ");
     }
 }

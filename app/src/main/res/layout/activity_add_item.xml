@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/title"
+    android:background="#FFF"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
@@ -15,9 +15,9 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <LinearLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
         android:orientation="vertical">
 
         <TextView
@@ -25,30 +25,27 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="这里是您添加的内容"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#FF9800"
-            android:layout_marginLeft="80dp"
-            android:layout_marginRight="80dp"
+            android:background="#E5E5E5"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:layout_marginTop="3dp"
             android:layout_marginBottom="5dp"
             />
 
-        <TextView
-            android:id="@+id/hint_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="当前并没有添加数据\n在下方输入数据并点击添加即可添加数据"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_marginTop="20dp"
             android:id="@+id/item_recycler_view"
             android:layout_width="match_parent"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/title"
             android:layout_height="0dp"
             android:layout_weight="1" />
 
@@ -63,19 +60,23 @@
             <EditText
                 android:id="@+id/add_item_edit_text"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginLeft="50dp"
-                android:layout_marginRight="20dp"
+                android:paddingLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="8"
+                android:background="@drawable/edit_text_normal"
+
                 android:hint="请输入要添加的项目"
                 android:textSize="14sp" />
 
             <Button
                 android:id="@+id/add_item_btn"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginRight="30dp"
                 android:layout_weight="2"
+                android:background="@drawable/shape"
                 android:text="添加"
                 android:textSize="14sp" />
         </LinearLayout>

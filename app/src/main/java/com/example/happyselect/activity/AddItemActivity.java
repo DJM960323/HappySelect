@@ -36,8 +36,7 @@ public class AddItemActivity extends AppCompatActivity {
     EditText addItemEditText;
     @BindView(R.id.add_item_btn)
     Button addItemBtn;
-    @BindView(R.id.hint_text)
-    TextView hintText;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +53,7 @@ public class AddItemActivity extends AppCompatActivity {
             itemList.add(items.get(i).getItemText());
         }
 
-        if (itemList.size() != 0) {
-            hintText.setVisibility(View.GONE);
-        }
+
         adapter = new ItemAdapter(itemList);
         adapter.setOnItemClickListener(new ItemAdapter.OnItemClickListener() {
             @Override
@@ -88,7 +85,6 @@ public class AddItemActivity extends AppCompatActivity {
             adapter.notifyItemInserted(itemList.size() - 1);
             itemRecyclerView.scrollToPosition(itemList.size() - 1);
             addItemEditText.setText("");
-            hintText.setVisibility(View.GONE);
 
         }
     }
