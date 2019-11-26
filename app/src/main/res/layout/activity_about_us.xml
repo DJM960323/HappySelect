@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:background="@drawable/title"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#EBE6D3"
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_about_us"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
+        android:background="@color/toolbar_bg"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <TextView
         android:id="@+id/introduce"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
-
-        android:layout_marginTop="?attr/actionBarSize"
-        android:paddingTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_marginRight="30dp"
+        android:paddingTop="30dp"
         android:text="@string/about_us"
-        />
+        android:textColor="#A59464"
+        android:textSize="18sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,6 +36,7 @@
         android:layout_marginRight="-2dp"
         android:paddingLeft="10dp"
         android:text="@string/call_me"
+        android:textColor="#A59464"
         android:textSize="18sp" />
 
 

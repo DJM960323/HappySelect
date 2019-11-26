@@ -19,7 +19,8 @@
             android:label="AddItem"
             android:windowSoftInputMode="adjustResize"></activity>
 
-        <activity android:name=".activity.MainActivity">
+        <activity
+            android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

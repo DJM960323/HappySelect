@@ -3,14 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF"
+    android:background="#EBE6D3"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_add"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
+        android:fitsSystemWindows="true"
+        android:background="@color/toolbar_bg"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
@@ -24,18 +25,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textColor="#A59464"
             android:text="这里是您添加的内容"
             android:textSize="20sp" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#E5E5E5"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="5dp"
-            />
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -45,7 +38,6 @@
             android:layout_marginRight="50dp"
             android:layout_marginLeft="50dp"
             android:layout_marginBottom="40dp"
-            android:background="@drawable/title"
             android:layout_height="0dp"
             android:layout_weight="1" />
 
@@ -54,7 +46,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="50dp"
+            android:paddingTop="20dp"
+            android:background="@color/toolbar_bg"
+            android:paddingBottom="20dp"
             android:orientation="horizontal">
 
             <EditText
@@ -62,11 +56,10 @@
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="50dp"
-                android:paddingLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:paddingLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:layout_weight="8"
                 android:background="@drawable/edit_text_normal"
-
                 android:hint="请输入要添加的项目"
                 android:textSize="14sp" />
 
@@ -76,8 +69,9 @@
                 android:layout_height="40dp"
                 android:layout_marginRight="30dp"
                 android:layout_weight="2"
-                android:background="@drawable/shape"
-                android:text="添加"
+                android:background="@drawable/add_btn_bg"
+                android:textColor="#EBE6D3"
+                android:text="添   加"
                 android:textSize="14sp" />
         </LinearLayout>
 
