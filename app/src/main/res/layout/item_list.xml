@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="20dp"
+    android:layout_marginTop="5dp"
     android:orientation="vertical">
 
 
@@ -13,9 +13,17 @@
         android:gravity="center_vertical"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/item_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/item"/>
+
         <TextView
             android:id="@+id/item_text_view"
-            android:layout_width="200dp"
+            android:layout_width="250dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/item_icon"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textColor="#A59464"
@@ -27,9 +35,8 @@
             android:layout_alignParentRight="true"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginTop="3dp"
             android:background="@drawable/delete"
-            android:layout_marginRight="30dp" />
+            />
 
     </RelativeLayout>
 
@@ -39,8 +46,7 @@
         android:background="#E1DAC6"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
         />
 
 
