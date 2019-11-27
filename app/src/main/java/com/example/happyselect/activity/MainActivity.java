@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     //用户输入的数据的集合
     private List<String> itemList = new ArrayList<>();
 
+    //开始和暂停的标志位，这个变量会经常用到
     private boolean isStart = false;
 
     @BindView(R.id.toolbar)
@@ -83,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.add:
                 Intent intent2 = new Intent(MainActivity.this, AddItemActivity.class);
+                //同上，跳转页面的时候itemList会被清空，这时如果没有停掉的话就会空指针异常
+                isStart = false;
                 startActivity(intent2);
                 break;
             default:
